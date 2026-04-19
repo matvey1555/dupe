@@ -1,18 +1,17 @@
 local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
 local UserInputService = game:GetService("UserInputService")
-local RunService = game:GetService("RunService")
 
 local player = Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
 
-local old = playerGui:FindFirstChild("DupeFakeUI_Luxury")
+local old = playerGui:FindFirstChild("MelonLoaderHub_mellontyX1")
 if old then
 	old:Destroy()
 end
 
 local gui = Instance.new("ScreenGui")
-gui.Name = "DupeFakeUI_Luxury"
+gui.Name = "MelonLoaderHub_mellontyX1"
 gui.ResetOnSpawn = false
 gui.IgnoreGuiInset = true
 gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
@@ -45,17 +44,17 @@ local function gradient(obj, c1, c2, rot)
 	return g
 end
 
-local function makeLabel(parent, text, size, pos, txtSize, font, color, align)
+local function makeLabel(parent, text, size, pos, textSize, font, color, xAlign)
 	local l = Instance.new("TextLabel")
 	l.Parent = parent
 	l.BackgroundTransparency = 1
 	l.Size = size
 	l.Position = pos
 	l.Text = text or ""
-	l.TextSize = txtSize or 14
+	l.TextSize = textSize or 14
 	l.Font = font or Enum.Font.Gotham
 	l.TextColor3 = color or Color3.new(1,1,1)
-	l.TextXAlignment = align or Enum.TextXAlignment.Left
+	l.TextXAlignment = xAlign or Enum.TextXAlignment.Left
 	return l
 end
 
@@ -64,377 +63,174 @@ local function makeButton(parent, text, size, pos, bg)
 	b.Parent = parent
 	b.Size = size
 	b.Position = pos
-	b.Text = text or "Button"
 	b.BackgroundColor3 = bg or Color3.fromRGB(30,30,30)
-	b.TextColor3 = Color3.new(1,1,1)
-	b.Font = Enum.Font.GothamBold
-	b.TextSize = 14
-	b.AutoButtonColor = false
 	b.BorderSizePixel = 0
+	b.AutoButtonColor = false
+	b.Text = text or "Button"
+	b.TextColor3 = Color3.new(1,1,1)
+	b.TextSize = 14
+	b.Font = Enum.Font.GothamBold
 	return b
 end
 
-local function sound(parent, id, vol, speed, looped)
-	local s = Instance.new("Sound")
-	s.Parent = parent
-	s.SoundId = "rbxassetid://" .. tostring(id)
-	s.Volume = vol or 1
-	s.PlaybackSpeed = speed or 1
-	s.Looped = looped or false
-	return s
-end
-
-local backdrop = Instance.new("Frame")
-backdrop.Parent = gui
-backdrop.Size = UDim2.fromScale(1,1)
-backdrop.BackgroundColor3 = Color3.fromRGB(0,0,0)
-backdrop.BackgroundTransparency = 0.35
-backdrop.BorderSizePixel = 0
-
-local shadow = Instance.new("ImageLabel")
-shadow.Parent = gui
-shadow.AnchorPoint = Vector2.new(0.5,0.5)
-shadow.Position = UDim2.new(0.5,0,0.5,14)
-shadow.Size = UDim2.new(0,760,0,470)
-shadow.BackgroundTransparency = 1
-shadow.Image = "rbxassetid://1316045217"
-shadow.ScaleType = Enum.ScaleType.Slice
-shadow.SliceCenter = Rect.new(10,10,118,118)
-shadow.ImageTransparency = 0.42
+local bg = Instance.new("Frame")
+bg.Parent = gui
+bg.Size = UDim2.fromScale(1,1)
+bg.BackgroundTransparency = 1
+bg.BorderSizePixel = 0
 
 local glow = Instance.new("ImageLabel")
 glow.Parent = gui
-glow.AnchorPoint = Vector2.new(0.5,0.5)
-glow.Position = UDim2.new(0.5,0,0.5,0)
-glow.Size = UDim2.new(0,720,0,430)
+glow.AnchorPoint = Vector2.new(0.5, 0.5)
+glow.Position = UDim2.new(0.5, 0, 0.5, 0)
+glow.Size = UDim2.new(0, 340, 0, 220)
 glow.BackgroundTransparency = 1
 glow.Image = "rbxassetid://5028857084"
-glow.ImageColor3 = Color3.fromRGB(0,195,255)
-glow.ImageTransparency = 0.32
+glow.ImageColor3 = Color3.fromRGB(255, 255, 255)
+glow.ImageTransparency = 0.18
 
 local main = Instance.new("Frame")
 main.Parent = gui
 main.Name = "Main"
-main.AnchorPoint = Vector2.new(0.5,0.5)
-main.Position = UDim2.new(0.5,0,0.5,0)
-main.Size = UDim2.new(0,670,0,390)
-main.BackgroundColor3 = Color3.fromRGB(10,14,24)
+main.AnchorPoint = Vector2.new(0.5, 0.5)
+main.Position = UDim2.new(0.5, 0, 0.5, 0)
+main.Size = UDim2.new(0, 320, 0, 210)
+main.BackgroundColor3 = Color3.fromRGB(10, 14, 24)
 main.BorderSizePixel = 0
-corner(main, 24)
-gradient(main, Color3.fromRGB(19,25,38), Color3.fromRGB(8,10,18), 90)
-local mainStroke = stroke(main, Color3.fromRGB(70,200,255), 1.6, 0.12)
-local neonStroke = stroke(main, Color3.fromRGB(0,225,255), 3, 0.42)
+corner(main, 20)
+gradient(main, Color3.fromRGB(20, 26, 40), Color3.fromRGB(8, 10, 18), 90)
+stroke(main, Color3.fromRGB(255, 255, 255), 1.2, 0.15)
 
 local top = Instance.new("Frame")
 top.Parent = main
-top.Size = UDim2.new(1,0,0,56)
+top.Size = UDim2.new(1, 0, 0, 38)
 top.BackgroundTransparency = 1
 
 local logo = Instance.new("Frame")
 logo.Parent = top
-logo.Size = UDim2.new(0,36,0,36)
-logo.Position = UDim2.new(0,16,0,10)
-logo.BackgroundColor3 = Color3.fromRGB(0,160,255)
+logo.Size = UDim2.new(0, 24, 0, 24)
+logo.Position = UDim2.new(0, 10, 0, 7)
+logo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 logo.BorderSizePixel = 0
-corner(logo, 12)
-gradient(logo, Color3.fromRGB(0,230,255), Color3.fromRGB(0,100,255), 45)
+corner(logo, 8)
+gradient(logo, Color3.fromRGB(255, 255, 255), Color3.fromRGB(190, 220, 255), 45)
 
-local logoTxt = makeLabel(logo, "D", UDim2.fromScale(1,1), UDim2.new(), 22, Enum.Font.GothamBlack, Color3.new(1,1,1), Enum.TextXAlignment.Center)
-logoTxt.TextYAlignment = Enum.TextYAlignment.Center
+local logoText = makeLabel(logo, "M", UDim2.fromScale(1,1), UDim2.new(), 13, Enum.Font.GothamBlack, Color3.fromRGB(30,30,40), Enum.TextXAlignment.Center)
+logoText.TextYAlignment = Enum.TextYAlignment.Center
 
-local title = makeLabel(top, "Premium Dupe Loader X", UDim2.new(1,-180,0,24), UDim2.new(0,62,0,8), 22, Enum.Font.GothamBold, Color3.fromRGB(255,255,255))
-local subtitle = makeLabel(top, "Luxury simulated interface • animated neon build", UDim2.new(1,-180,0,16), UDim2.new(0,62,0,30), 11, Enum.Font.Gotham, Color3.fromRGB(140,160,185))
+local title = makeLabel(top, "melon loader hub", UDim2.new(1, -80, 0, 16), UDim2.new(0, 40, 0, 10), 13, Enum.Font.GothamBold, Color3.fromRGB(255,255,255))
 
-local minimize = makeButton(top, "—", UDim2.new(0,32,0,32), UDim2.new(1,-84,0,11), Color3.fromRGB(40,50,72))
-corner(minimize, 10)
-stroke(minimize, Color3.fromRGB(90,120,170), 1, 0.2)
+local minimize = makeButton(top, "—", UDim2.new(0, 22, 0, 22), UDim2.new(1, -50, 0, 8), Color3.fromRGB(45, 55, 80))
+corner(minimize, 7)
 
-local close = makeButton(top, "✕", UDim2.new(0,32,0,32), UDim2.new(1,-44,0,11), Color3.fromRGB(255,75,90))
-corner(close, 10)
+local close = makeButton(top, "✕", UDim2.new(0, 22, 0, 22), UDim2.new(1, -24, 0, 8), Color3.fromRGB(255, 70, 90))
+corner(close, 7)
 
 local line = Instance.new("Frame")
 line.Parent = main
-line.Size = UDim2.new(1,-24,0,1)
-line.Position = UDim2.new(0,12,0,57)
-line.BackgroundColor3 = Color3.fromRGB(40,55,85)
+line.Size = UDim2.new(1, -16, 0, 1)
+line.Position = UDim2.new(0, 8, 0, 39)
+line.BackgroundColor3 = Color3.fromRGB(60, 70, 95)
 line.BorderSizePixel = 0
-
-local tabs = Instance.new("Frame")
-tabs.Parent = main
-tabs.BackgroundTransparency = 1
-tabs.Position = UDim2.new(0,18,0,72)
-tabs.Size = UDim2.new(1,-36,0,40)
-
-local tabButtons = {}
-local pages = {}
-
-local function createTab(name, xPos)
-	local btn = makeButton(tabs, name, UDim2.new(0,120,0,34), UDim2.new(0,xPos,0,0), Color3.fromRGB(22,28,42))
-	corner(btn, 12)
-	local st = stroke(btn, Color3.fromRGB(70,110,170), 1, 0.25)
-	gradient(btn, Color3.fromRGB(28,35,52), Color3.fromRGB(18,22,34), 90)
-	tabButtons[name] = {button = btn, stroke = st}
-	return btn
-end
-
-local infoTab = createTab("Main", 0)
-local logsTab = createTab("Logs", 132)
-local info2Tab = createTab("Stats", 264)
 
 local content = Instance.new("Frame")
 content.Parent = main
 content.BackgroundTransparency = 1
-content.Position = UDim2.new(0,18,0,120)
-content.Size = UDim2.new(1,-36,1,-148)
+content.Position = UDim2.new(0, 10, 0, 46)
+content.Size = UDim2.new(1, -20, 1, -62)
 
-local function createPage(name)
-	local p = Instance.new("Frame")
-	p.Parent = content
-	p.Name = name
-	p.BackgroundTransparency = 1
-	p.Size = UDim2.fromScale(1,1)
-	p.Visible = false
-	pages[name] = p
-	return p
+local menuPage = Instance.new("Frame")
+menuPage.Parent = content
+menuPage.Size = UDim2.fromScale(1,1)
+menuPage.BackgroundTransparency = 1
+
+local loadingPage = Instance.new("Frame")
+loadingPage.Parent = content
+loadingPage.Size = UDim2.fromScale(1,1)
+loadingPage.BackgroundTransparency = 1
+loadingPage.Visible = false
+
+local menuTitle = makeLabel(menuPage, "Select script", UDim2.new(1, 0, 0, 16), UDim2.new(0, 0, 0, 0), 13, Enum.Font.GothamBold, Color3.fromRGB(255,255,255), Enum.TextXAlignment.Center)
+
+local function styleScriptButton(btn)
+	corner(btn, 10)
+	stroke(btn, Color3.fromRGB(255, 255, 255), 1, 0.2)
+	gradient(btn, Color3.fromRGB(70, 130, 255), Color3.fromRGB(40, 80, 180), 90)
+	btn.TextSize = 11
 end
 
-local mainPage = createPage("Main")
-local logsPage = createPage("Logs")
-local statsPage = createPage("Stats")
+local freezeBtn = makeButton(menuPage, "Freeze", UDim2.new(0.48, 0, 0, 28), UDim2.new(0, 0, 0, 22), Color3.fromRGB(0, 145, 255))
+local duelBtn = makeButton(menuPage, "Duel", UDim2.new(0.48, 0, 0, 28), UDim2.new(0.52, 0, 0, 22), Color3.fromRGB(0, 145, 255))
+local dupeBtn = makeButton(menuPage, "Dupe", UDim2.new(0.48, 0, 0, 28), UDim2.new(0, 0, 0, 56), Color3.fromRGB(0, 145, 255))
+local stealBtn = makeButton(menuPage, "Instant Steal", UDim2.new(0.48, 0, 0, 28), UDim2.new(0.52, 0, 0, 56), Color3.fromRGB(0, 145, 255))
 
-mainPage.Visible = true
+styleScriptButton(freezeBtn)
+styleScriptButton(duelBtn)
+styleScriptButton(dupeBtn)
+styleScriptButton(stealBtn)
 
-local desc = makeLabel(mainPage, "Нажмите кнопку ниже, чтобы начать роскошную фейковую загрузку.", UDim2.new(1,-260,0,42), UDim2.new(0,0,0,0), 18, Enum.Font.GothamMedium, Color3.fromRGB(230,235,245))
-desc.TextWrapped = true
+local selectedLabel = makeLabel(menuPage, "Selected: none", UDim2.new(1, 0, 0, 14), UDim2.new(0, 0, 0, 92), 10, Enum.Font.GothamMedium, Color3.fromRGB(190,205,225), Enum.TextXAlignment.Center)
 
-local smallInfo = makeLabel(mainPage, "Secure tunnel: Active  •  Protection: Synced  •  Mode: Premium", UDim2.new(1,-260,0,18), UDim2.new(0,0,0,46), 12, Enum.Font.Gotham, Color3.fromRGB(0,200,255))
+local startGlow = Instance.new("ImageLabel")
+startGlow.Parent = menuPage
+startGlow.AnchorPoint = Vector2.new(0.5, 0.5)
+startGlow.Position = UDim2.new(0.5, 0, 1, -17)
+startGlow.Size = UDim2.new(1, 30, 0, 46)
+startGlow.BackgroundTransparency = 1
+startGlow.Image = "rbxassetid://5028857084"
+startGlow.ImageColor3 = Color3.fromRGB(255,255,255)
+startGlow.ImageTransparency = 0.1
 
-local dupeGlow = Instance.new("ImageLabel")
-dupeGlow.Parent = mainPage
-dupeGlow.AnchorPoint = Vector2.new(0.5,0)
-dupeGlow.Position = UDim2.new(0,112,0,88)
-dupeGlow.Size = UDim2.new(0,270,0,88)
-dupeGlow.BackgroundTransparency = 1
-dupeGlow.Image = "rbxassetid://5028857084"
-dupeGlow.ImageColor3 = Color3.fromRGB(0,180,255)
-dupeGlow.ImageTransparency = 0.3
+local startBtn = makeButton(menuPage, "START", UDim2.new(1, 0, 0, 32), UDim2.new(0, 0, 1, -34), Color3.fromRGB(235, 240, 255))
+corner(startBtn, 10)
+stroke(startBtn, Color3.fromRGB(255, 255, 255), 1.2, 0)
+gradient(startBtn, Color3.fromRGB(255,255,255), Color3.fromRGB(185, 215, 255), 90)
+startBtn.TextSize = 13
+startBtn.TextColor3 = Color3.fromRGB(0,0,0)
+local startTextStroke = Instance.new("UIStroke")
+startTextStroke.Parent = startBtn
+startTextStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Contextual
+startTextStroke.Color = Color3.fromRGB(90, 120, 180)
+startTextStroke.Thickness = 1
+startTextStroke.Transparency = 0.15
 
-local dupe = makeButton(mainPage, "D U P E", UDim2.new(0,230,0,60), UDim2.new(0,0,0,100), Color3.fromRGB(0,145,255))
-dupe.Position = UDim2.new(0,0,0,100)
-corner(dupe, 18)
-stroke(dupe, Color3.fromRGB(140,235,255), 1.4, 0.1)
-gradient(dupe, Color3.fromRGB(0,235,255), Color3.fromRGB(0,95,255), 90)
-dupe.TextSize = 23
+local loadTitle = makeLabel(loadingPage, "Loading...", UDim2.new(1, 0, 0, 16), UDim2.new(0, 0, 0, 0), 13, Enum.Font.GothamBold, Color3.fromRGB(255,255,255), Enum.TextXAlignment.Center)
+local loadSub = makeLabel(loadingPage, "Preparing", UDim2.new(1, 0, 0, 12), UDim2.new(0, 0, 0, 16), 10, Enum.Font.Gotham, Color3.fromRGB(180,200,225), Enum.TextXAlignment.Center)
 
-local status = makeLabel(mainPage, "Ожидание запуска...", UDim2.new(1,-260,0,22), UDim2.new(0,0,0,176), 15, Enum.Font.GothamMedium, Color3.fromRGB(180,190,210))
+local status = makeLabel(loadingPage, "Waiting...", UDim2.new(1, 0, 0, 12), UDim2.new(0, 0, 0, 36), 10, Enum.Font.GothamMedium, Color3.fromRGB(190,205,225), Enum.TextXAlignment.Center)
 
 local barBg = Instance.new("Frame")
-barBg.Parent = mainPage
-barBg.Size = UDim2.new(1,-260,0,24)
-barBg.Position = UDim2.new(0,0,0,206)
-barBg.BackgroundColor3 = Color3.fromRGB(19,24,35)
+barBg.Parent = loadingPage
+barBg.Size = UDim2.new(1, 0, 0, 16)
+barBg.Position = UDim2.new(0, 0, 0, 58)
+barBg.BackgroundColor3 = Color3.fromRGB(20, 25, 36)
 barBg.BorderSizePixel = 0
 corner(barBg, 999)
-stroke(barBg, Color3.fromRGB(70,100,140), 1, 0.28)
+stroke(barBg, Color3.fromRGB(255, 255, 255), 1, 0.25)
 
 local barFill = Instance.new("Frame")
 barFill.Parent = barBg
-barFill.Size = UDim2.new(0,0,1,0)
-barFill.BackgroundColor3 = Color3.fromRGB(0,180,255)
+barFill.Size = UDim2.new(0, 0, 1, 0)
+barFill.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 barFill.BorderSizePixel = 0
 corner(barFill, 999)
-gradient(barFill, Color3.fromRGB(0,255,255), Color3.fromRGB(0,110,255), 0)
+gradient(barFill, Color3.fromRGB(255, 255, 255), Color3.fromRGB(180, 220, 255), 0)
 
-local shine = Instance.new("Frame")
-shine.Parent = barFill
-shine.Size = UDim2.new(0,46,1,0)
-shine.BackgroundColor3 = Color3.fromRGB(255,255,255)
-shine.BackgroundTransparency = 0.72
-shine.BorderSizePixel = 0
-corner(shine, 999)
-
-local percent = makeLabel(barBg, "0%", UDim2.fromScale(1,1), UDim2.new(), 13, Enum.Font.GothamBold, Color3.new(1,1,1), Enum.TextXAlignment.Center)
+local percent = makeLabel(barBg, "0%", UDim2.fromScale(1,1), UDim2.new(), 10, Enum.Font.GothamBold, Color3.fromRGB(30,30,40), Enum.TextXAlignment.Center)
 percent.TextYAlignment = Enum.TextYAlignment.Center
 
-local sideCard = Instance.new("Frame")
-sideCard.Parent = mainPage
-sideCard.Size = UDim2.new(0,225,1,-6)
-sideCard.Position = UDim2.new(1,-225,0,0)
-sideCard.BackgroundColor3 = Color3.fromRGB(15,20,32)
-sideCard.BorderSizePixel = 0
-corner(sideCard, 20)
-stroke(sideCard, Color3.fromRGB(70,120,180), 1, 0.2)
-gradient(sideCard, Color3.fromRGB(20,27,42), Color3.fromRGB(12,15,24), 90)
+local resultLabel = makeLabel(loadingPage, "", UDim2.new(1, 0, 0, 12), UDim2.new(0, 0, 0, 82), 10, Enum.Font.GothamBold, Color3.fromRGB(255,120,120), Enum.TextXAlignment.Center)
 
-local circleHolder = Instance.new("Frame")
-circleHolder.Parent = sideCard
-circleHolder.Size = UDim2.new(0,120,0,120)
-circleHolder.Position = UDim2.new(0.5,-60,0,18)
-circleHolder.BackgroundTransparency = 1
+local backBtn = makeButton(loadingPage, "BACK", UDim2.new(1, 0, 0, 32), UDim2.new(0, 0, 1, -34), Color3.fromRGB(18, 24, 38))
+corner(backBtn, 10)
+stroke(backBtn, Color3.fromRGB(255, 255, 255), 1, 0.2)
+gradient(backBtn, Color3.fromRGB(35, 45, 70), Color3.fromRGB(18, 24, 38), 90)
+backBtn.TextSize = 12
 
-local ring = Instance.new("ImageLabel")
-ring.Parent = circleHolder
-ring.Size = UDim2.fromScale(1,1)
-ring.BackgroundTransparency = 1
-ring.Image = "rbxassetid://5553946656"
-ring.ImageColor3 = Color3.fromRGB(0,210,255)
-ring.ImageTransparency = 0.1
-
-local inner = Instance.new("Frame")
-inner.Parent = circleHolder
-inner.AnchorPoint = Vector2.new(0.5,0.5)
-inner.Position = UDim2.new(0.5,0,0.5,0)
-inner.Size = UDim2.new(0,76,0,76)
-inner.BackgroundColor3 = Color3.fromRGB(10,14,22)
-inner.BorderSizePixel = 0
-corner(inner, 999)
-stroke(inner, Color3.fromRGB(0,200,255), 1.2, 0.2)
-
-local circleText = makeLabel(inner, "0%", UDim2.fromScale(1,1), UDim2.new(), 20, Enum.Font.GothamBold, Color3.new(1,1,1), Enum.TextXAlignment.Center)
-circleText.TextYAlignment = Enum.TextYAlignment.Center
-
-local scanText = makeLabel(sideCard, "System State", UDim2.new(1,-20,0,20), UDim2.new(0,12,0,150), 16, Enum.Font.GothamBold, Color3.fromRGB(255,255,255))
-local st1 = makeLabel(sideCard, "• Injector: Ready", UDim2.new(1,-20,0,18), UDim2.new(0,12,0,182), 13, Enum.Font.Gotham, Color3.fromRGB(120,240,160))
-local st2 = makeLabel(sideCard, "• Tunnel: Synced", UDim2.new(1,-20,0,18), UDim2.new(0,12,0,204), 13, Enum.Font.Gotham, Color3.fromRGB(120,220,255))
-local st3 = makeLabel(sideCard, "• Validation: Waiting", UDim2.new(1,-20,0,18), UDim2.new(0,12,0,226), 13, Enum.Font.Gotham, Color3.fromRGB(255,220,120))
-local st4 = makeLabel(sideCard, "• Result: Unknown", UDim2.new(1,-20,0,18), UDim2.new(0,12,0,248), 13, Enum.Font.Gotham, Color3.fromRGB(255,160,160))
-
-local logsBox = Instance.new("Frame")
-logsBox.Parent = logsPage
-logsBox.Size = UDim2.new(1,0,1,0)
-logsBox.BackgroundColor3 = Color3.fromRGB(11,15,24)
-logsBox.BorderSizePixel = 0
-corner(logsBox, 20)
-stroke(logsBox, Color3.fromRGB(70,120,180), 1, 0.2)
-
-local logsTitle = makeLabel(logsBox, "Live Logs", UDim2.new(1,-20,0,24), UDim2.new(0,14,0,10), 18, Enum.Font.GothamBold, Color3.fromRGB(255,255,255))
-
-local logsScrolling = Instance.new("ScrollingFrame")
-logsScrolling.Parent = logsBox
-logsScrolling.Position = UDim2.new(0,12,0,42)
-logsScrolling.Size = UDim2.new(1,-24,1,-54)
-logsScrolling.BackgroundColor3 = Color3.fromRGB(8,11,18)
-logsScrolling.BorderSizePixel = 0
-logsScrolling.ScrollBarThickness = 4
-logsScrolling.CanvasSize = UDim2.new(0,0,0,0)
-corner(logsScrolling, 16)
-
-local logsLayout = Instance.new("UIListLayout")
-logsLayout.Parent = logsScrolling
-logsLayout.Padding = UDim.new(0,6)
-logsLayout.SortOrder = Enum.SortOrder.LayoutOrder
-
-local statsBox = Instance.new("Frame")
-statsBox.Parent = statsPage
-statsBox.Size = UDim2.new(1,0,1,0)
-statsBox.BackgroundColor3 = Color3.fromRGB(11,15,24)
-statsBox.BorderSizePixel = 0
-corner(statsBox, 20)
-stroke(statsBox, Color3.fromRGB(70,120,180), 1, 0.2)
-
-local statTitle = makeLabel(statsBox, "Visual Stats", UDim2.new(1,-20,0,24), UDim2.new(0,14,0,10), 18, Enum.Font.GothamBold, Color3.fromRGB(255,255,255))
-
-local statNames = {
-	{"Success Rate", "99.9%"},
-	{"Server Link", "Stable"},
-	{"Security Layer", "Enabled"},
-	{"Inventory Sync", "Active"},
-	{"Dupe Speed", "Ultra"},
-	{"Detection Risk", "0.01%"},
-}
-
-for i, entry in ipairs(statNames) do
-	local row = Instance.new("Frame")
-	row.Parent = statsBox
-	row.Size = UDim2.new(1,-24,0,38)
-	row.Position = UDim2.new(0,12,0,44 + ((i-1)*44))
-	row.BackgroundColor3 = Color3.fromRGB(18,24,38)
-	row.BorderSizePixel = 0
-	corner(row, 14)
-	stroke(row, Color3.fromRGB(65,100,150), 1, 0.25)
-
-	local left = makeLabel(row, entry[1], UDim2.new(0.6,0,1,0), UDim2.new(0,12,0,0), 14, Enum.Font.GothamMedium, Color3.fromRGB(210,220,235))
-	left.TextYAlignment = Enum.TextYAlignment.Center
-
-	local right = makeLabel(row, entry[2], UDim2.new(0.4,-12,1,0), UDim2.new(0.6,0,0,0), 14, Enum.Font.GothamBold, Color3.fromRGB(0,210,255), Enum.TextXAlignment.Right)
-	right.TextYAlignment = Enum.TextYAlignment.Center
-end
-
-local footer = makeLabel(main, "by mellontyX1", UDim2.new(1,-24,0,18), UDim2.new(0,12,1,-24), 12, Enum.Font.GothamBold, Color3.fromRGB(0,210,255), Enum.TextXAlignment.Right)
-
-local ambience = sound(main, 9118828560, 0.16, 1, true)
-local clickSound = sound(main, 4590662766, 0.75, 1, false)
-local hoverSound = sound(main, 156750593, 0.12, 1.2, false)
-local startSound = sound(main, 9120299518, 0.85, 1, false)
-local tickSound = sound(main, 12222005, 0.08, 1.5, false)
-local errorSound = sound(main, 138097048, 1, 1, false)
-
-pcall(function()
-	ambience:Play()
-end)
-
-local function addLog(text, color)
-	local item = Instance.new("TextLabel")
-	item.Parent = logsScrolling
-	item.Size = UDim2.new(1,-8,0,24)
-	item.BackgroundColor3 = Color3.fromRGB(14,19,30)
-	item.BorderSizePixel = 0
-	item.Text = "  " .. text
-	item.TextXAlignment = Enum.TextXAlignment.Left
-	item.Font = Enum.Font.Code
-	item.TextSize = 14
-	item.TextColor3 = color or Color3.fromRGB(200,220,255)
-	corner(item, 10)
-
-	task.defer(function()
-		logsScrolling.CanvasSize = UDim2.new(0,0,0,logsLayout.AbsoluteContentSize.Y + 8)
-		logsScrolling.CanvasPosition = Vector2.new(0, math.max(0, logsScrolling.CanvasSize.Y.Offset))
-	end)
-end
-
-addLog("[BOOT] interface loaded", Color3.fromRGB(120,220,255))
-addLog("[READY] system waiting for start", Color3.fromRGB(150,255,170))
-
-local currentTab = "Main"
-local function switchTab(name)
-	currentTab = name
-	for tabName, tabData in pairs(tabButtons) do
-		if tabName == name then
-			tabData.button.BackgroundColor3 = Color3.fromRGB(0,120,220)
-			tabData.stroke.Color = Color3.fromRGB(120,230,255)
-			tabData.stroke.Transparency = 0.05
-		else
-			tabData.button.BackgroundColor3 = Color3.fromRGB(22,28,42)
-			tabData.stroke.Color = Color3.fromRGB(70,110,170)
-			tabData.stroke.Transparency = 0.25
-		end
-	end
-	for pageName, pageObj in pairs(pages) do
-		pageObj.Visible = (pageName == name)
-	end
-end
-
-infoTab.MouseButton1Click:Connect(function()
-	clickSound:Play()
-	switchTab("Main")
-end)
-
-logsTab.MouseButton1Click:Connect(function()
-	clickSound:Play()
-	switchTab("Logs")
-end)
-
-info2Tab.MouseButton1Click:Connect(function()
-	clickSound:Play()
-	switchTab("Stats")
-end)
-
-switchTab("Main")
+local footer = makeLabel(main, "by mellontyX1", UDim2.new(1, -12, 0, 12), UDim2.new(0, 6, 1, -14), 9, Enum.Font.GothamBold, Color3.fromRGB(255,255,255), Enum.TextXAlignment.Right)
 
 local dragging = false
-local dragInput = nil
-local dragStart = nil
-local startPos = nil
+local dragInput, dragStart, startPos
 
 local function updateDrag(input)
 	local delta = input.Position - dragStart
@@ -445,7 +241,6 @@ local function updateDrag(input)
 		startPos.Y.Offset + delta.Y
 	)
 	main.Position = newPos
-	shadow.Position = UDim2.new(newPos.X.Scale, newPos.X.Offset, newPos.Y.Scale, newPos.Y.Offset + 14)
 	glow.Position = newPos
 end
 
@@ -454,7 +249,6 @@ top.InputBegan:Connect(function(input)
 		dragging = true
 		dragStart = input.Position
 		startPos = main.Position
-		clickSound:Play()
 		input.Changed:Connect(function()
 			if input.UserInputState == Enum.UserInputState.End then
 				dragging = false
@@ -476,205 +270,125 @@ UserInputService.InputChanged:Connect(function(input)
 end)
 
 local minimized = false
-local fullSize = UDim2.new(0,670,0,390)
-local miniSize = UDim2.new(0,670,0,70)
+local fullSize = UDim2.new(0, 320, 0, 210)
+local miniSize = UDim2.new(0, 320, 0, 42)
 
 minimize.MouseButton1Click:Connect(function()
-	clickSound:Play()
 	minimized = not minimized
 	if minimized then
 		content.Visible = false
-		tabs.Visible = false
 		footer.Visible = false
-		TweenService:Create(main, TweenInfo.new(0.25), {Size = miniSize}):Play()
-		TweenService:Create(shadow, TweenInfo.new(0.25), {Size = UDim2.new(0,760,0,120)}):Play()
-		TweenService:Create(glow, TweenInfo.new(0.25), {Size = UDim2.new(0,720,0,100)}):Play()
+		TweenService:Create(main, TweenInfo.new(0.2), {Size = miniSize}):Play()
+		TweenService:Create(glow, TweenInfo.new(0.2), {Size = UDim2.new(0, 300, 0, 70)}):Play()
 		minimize.Text = "+"
 	else
 		content.Visible = true
-		tabs.Visible = true
 		footer.Visible = true
-		TweenService:Create(main, TweenInfo.new(0.25), {Size = fullSize}):Play()
-		TweenService:Create(shadow, TweenInfo.new(0.25), {Size = UDim2.new(0,760,0,470)}):Play()
-		TweenService:Create(glow, TweenInfo.new(0.25), {Size = UDim2.new(0,720,0,430)}):Play()
+		TweenService:Create(main, TweenInfo.new(0.2), {Size = fullSize}):Play()
+		TweenService:Create(glow, TweenInfo.new(0.2), {Size = UDim2.new(0, 340, 0, 220)}):Play()
 		minimize.Text = "—"
 	end
 end)
 
-close.MouseEnter:Connect(function() hoverSound:Play() end)
-minimize.MouseEnter:Connect(function() hoverSound:Play() end)
-infoTab.MouseEnter:Connect(function() hoverSound:Play() end)
-logsTab.MouseEnter:Connect(function() hoverSound:Play() end)
-info2Tab.MouseEnter:Connect(function() hoverSound:Play() end)
-
 close.MouseButton1Click:Connect(function()
-	clickSound:Play()
-	TweenService:Create(main, TweenInfo.new(0.25), {
-		Size = UDim2.new(0,0,0,0),
-		BackgroundTransparency = 1
-	}):Play()
-	TweenService:Create(shadow, TweenInfo.new(0.25), {ImageTransparency = 1}):Play()
-	TweenService:Create(glow, TweenInfo.new(0.25), {ImageTransparency = 1}):Play()
-	task.wait(0.26)
 	gui:Destroy()
 end)
 
-dupe.MouseEnter:Connect(function()
-	hoverSound:Play()
-	TweenService:Create(dupe, TweenInfo.new(0.15), {
-		Size = UDim2.new(0,240,0,64)
-	}):Play()
-	TweenService:Create(dupeGlow, TweenInfo.new(0.15), {
-		Size = UDim2.new(0,290,0,100),
-		ImageTransparency = 0.18
-	}):Play()
-end)
+local selectedScript = nil
+local buttons = {
+	["Freeze"] = freezeBtn,
+	["Duel"] = duelBtn,
+	["Dupe"] = dupeBtn,
+	["Instant Steal"] = stealBtn
+}
 
-dupe.MouseLeave:Connect(function()
-	TweenService:Create(dupe, TweenInfo.new(0.15), {
-		Size = UDim2.new(0,230,0,60)
-	}):Play()
-	TweenService:Create(dupeGlow, TweenInfo.new(0.15), {
-		Size = UDim2.new(0,270,0,88),
-		ImageTransparency = 0.3
-	}):Play()
-end)
-
-local particles = {}
-for i = 1, 16 do
-	local p = Instance.new("Frame")
-	p.Parent = gui
-	p.Size = UDim2.new(0,4,0,4)
-	p.BackgroundColor3 = Color3.fromRGB(0,210,255)
-	p.BorderSizePixel = 0
-	p.BackgroundTransparency = 0.35
-	corner(p, 999)
-	table.insert(particles, {
-		obj = p,
-		angle = math.rad((360/16) * i),
-		radius = 210 + math.random(-20,20),
-		speed = 0.4 + math.random() * 0.8
-	})
+local function refreshSelection()
+	for name, btn in pairs(buttons) do
+		if name == selectedScript then
+			btn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			btn.TextColor3 = Color3.fromRGB(30,30,40)
+		else
+			btn.BackgroundColor3 = Color3.fromRGB(0, 145, 255)
+			btn.TextColor3 = Color3.fromRGB(0,0,0)
+		end
+	end
+	selectedLabel.Text = "Selected: " .. (selectedScript or "none")
 end
+
+for name, btn in pairs(buttons) do
+	btn.MouseButton1Click:Connect(function()
+		selectedScript = name
+		refreshSelection()
+	end)
+end
+
+refreshSelection()
 
 local loading = false
 local fakeTexts = {
-	"Подключение к узлу",
-	"Проверка модулей",
-	"Сканирование инвентаря",
-	"Инициализация процесса",
-	"Синхронизация слотов",
-	"Подготовка пакетов",
-	"Финальная валидация",
-	"Передача данных",
-	"Оптимизация сигнала",
-	"Проверка результата"
+	"Connecting...",
+	"Checking...",
+	"Reading...",
+	"Preparing...",
+	"Syncing...",
+	"Processing...",
+	"Finalizing...",
+	"Validating..."
 }
 
-dupe.MouseButton1Click:Connect(function()
-	if loading then return end
+local function startFakeLoad(scriptName)
+	if loading then
+		return
+	end
+
 	loading = true
+	menuPage.Visible = false
+	loadingPage.Visible = true
 
-	clickSound:Play()
-	startSound:Play()
-	switchTab("Main")
-
-	dupe.Text = "LOADING..."
-	dupe.Active = false
-	desc.Text = "Пожалуйста, подождите. Выполняется премиум имитация загрузки."
-	status.Text = "Запуск..."
-	st4.Text = "• Result: Processing"
-	barFill.Size = UDim2.new(0,0,1,0)
+	loadTitle.Text = scriptName
+	loadSub.Text = "Loading simulation"
+	status.Text = "Starting..."
+	resultLabel.Text = ""
+	barFill.Size = UDim2.new(0, 0, 1, 0)
 	percent.Text = "0%"
-	circleText.Text = "0%"
-	addLog("[START] process initialized", Color3.fromRGB(255,255,170))
 
 	for i = 1, 100 do
-		local msg = fakeTexts[math.random(1, #fakeTexts)] .. "..."
-		status.Text = msg
+		status.Text = fakeTexts[math.random(1, #fakeTexts)]
 		percent.Text = i .. "%"
-		circleText.Text = i .. "%"
-		ring.Rotation = ring.Rotation + 14
-
 		TweenService:Create(barFill, TweenInfo.new(0.8, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
-			Size = UDim2.new(i/100, 0, 1, 0)
+			Size = UDim2.new(i / 100, 0, 1, 0)
 		}):Play()
-
-		if i % 3 == 0 then
-			addLog(string.format("[STEP %03d] %s", i, msg), Color3.fromRGB(180,220,255))
-		end
-		if i % 5 == 0 then
-			tickSound:Play()
-		end
-		if i == 25 then
-			st2.Text = "• Tunnel: High Load"
-			addLog("[WARN] server load increased", Color3.fromRGB(255,220,120))
-		elseif i == 55 then
-			st3.Text = "• Validation: Running"
-			addLog("[CHECK] validation layer enabled", Color3.fromRGB(120,255,170))
-		elseif i == 82 then
-			st4.Text = "• Result: Unstable"
-			addLog("[WARN] unstable response detected", Color3.fromRGB(255,150,150))
-		end
-
 		task.wait(1)
 	end
 
-	errorSound:Play()
-	status.Text = "Ошибка, попробуйте еще раз"
-	desc.Text = "Во время обработки произошла неизвестная ошибка."
-	dupe.Text = "TRY AGAIN"
-	dupe.Active = true
+	status.Text = "Failed"
+	resultLabel.Text = "Ошибка, попробуйте еще раз"
 	loading = false
-	st4.Text = "• Result: Failed"
+end
 
-	addLog("[ERROR] unknown exception returned", Color3.fromRGB(255,140,140))
-	addLog("[STOP] process aborted", Color3.fromRGB(255,180,180))
-
-	TweenService:Create(dupe, TweenInfo.new(0.18), {
-		BackgroundColor3 = Color3.fromRGB(255,70,90)
-	}):Play()
-	task.wait(0.22)
-	TweenService:Create(dupe, TweenInfo.new(0.22), {
-		BackgroundColor3 = Color3.fromRGB(0,145,255)
-	}):Play()
+startBtn.MouseButton1Click:Connect(function()
+	if not selectedScript then
+		selectedLabel.Text = "Selected: choose one"
+		return
+	end
+	startFakeLoad(selectedScript)
 end)
 
-main.Size = UDim2.new(0,0,0,0)
-shadow.ImageTransparency = 1
+backBtn.MouseButton1Click:Connect(function()
+	if loading then
+		return
+	end
+	loadingPage.Visible = false
+	menuPage.Visible = true
+end)
+
+main.Size = UDim2.new(0, 0, 0, 0)
 glow.ImageTransparency = 1
 
-TweenService:Create(main, TweenInfo.new(0.45, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
+TweenService:Create(main, TweenInfo.new(0.35, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
 	Size = fullSize
 }):Play()
-TweenService:Create(shadow, TweenInfo.new(0.35), {ImageTransparency = 0.42}):Play()
-TweenService:Create(glow, TweenInfo.new(0.35), {ImageTransparency = 0.32}):Play()
 
-local pulse = 0
-RunService.RenderStepped:Connect(function(dt)
-	pulse += dt
-
-	local a = (math.sin(pulse * 2) + 1) / 2
-	local b = (math.sin(pulse * 1.2) + 1) / 2
-	local c = (math.sin(pulse * 2.5) + 1) / 2
-
-	neonStroke.Transparency = 0.18 + a * 0.42
-	mainStroke.Transparency = 0.05 + b * 0.18
-	glow.ImageTransparency = 0.18 + a * 0.2
-	logo.Rotation = math.sin(pulse * 1.4) * 3
-	ring.Rotation = ring.Rotation + dt * 45
-
-	footer.TextColor3 = Color3.fromRGB(
-		0,
-		170 + math.floor(50 * b),
-		220 + math.floor(35 * c)
-	)
-
-	local basePos = main.Position
-	for _, p in ipairs(particles) do
-		local x = math.cos(pulse * p.speed + p.angle) * p.radius
-		local y = math.sin(pulse * p.speed + p.angle) * (p.radius * 0.55)
-		p.obj.Position = UDim2.new(basePos.X.Scale, basePos.X.Offset + x, basePos.Y.Scale, basePos.Y.Offset + y)
-		p.obj.BackgroundTransparency = 0.55 + 0.25 * math.sin(pulse * p.speed + p.angle)
-	end
-end)
+TweenService:Create(glow, TweenInfo.new(0.25), {
+	ImageTransparency = 0.18
+}):Play()
