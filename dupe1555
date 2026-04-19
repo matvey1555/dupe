@@ -392,3 +392,5 @@ TweenService:Create(main, TweenInfo.new(0.35, Enum.EasingStyle.Back, Enum.Easing
 TweenService:Create(glow, TweenInfo.new(0.25), {
 	ImageTransparency = 0.18
 }):Play()
+main.AnchorPoint = Vector2.new(0.5, 0.5)
+main.Position = UDim2.new(0.5, 0, 0.5, 0)
